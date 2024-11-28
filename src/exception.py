@@ -1,7 +1,6 @@
 import sys
 import logging
-from logger import logging  # Import the logging configuration from logger.py
-
+from src.logger import logging
 # Function to get detailed error message
 def error_message_detail(error, error_detail: sys):
     _, _, exc_tb = error_detail.exc_info()  # Extract traceback details
@@ -16,10 +15,10 @@ class CustomException(Exception):
     def __init__(self, error_message, error_detail: sys):
         # Call the base class constructor
         super().__init__(error_message)
-        self.error_message = error_message_detail(error_message, error_detail)
+        self.error_message = error_message_detail(error_message, error_detail=error_detail)
         
-        # Log the error message to the log file
-        logging.error(self.error_message)  # Log the error message with traceback
 
     def __str__(self):
         return self.error_message  # Return the detailed error message
+    
+
